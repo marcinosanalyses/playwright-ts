@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Playwright outputs
+playwright-report/
+test-results/
+blob-report/
+playwright/.cache/
+
+# Local Playwright/Copilot browser-debug artifacts
+.playwright-mcp/
+
+# Local auth/session artifacts (can contain sensitive data)
+auth.json
+storageState.json
+
+# Environment files
+.env
+.env.*
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS/editor
+.DS_Store
+.vscode/settings.json
+.vscode/launch.json
+.vscode/tasks.json
