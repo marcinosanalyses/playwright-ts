@@ -22,8 +22,8 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install firefox --with-deps
 
-      - name: Run Playwright tests
-        run: npx playwright test
+      - name: Run Playwright tests (LeanCode + Patrol)
+        run: npx playwright test tests/leancode.spec.ts tests/patrol.spec.ts
 
       - name: Upload test report
         if: always()
