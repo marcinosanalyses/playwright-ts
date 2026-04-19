@@ -4,6 +4,15 @@ on:
   schedule:
     - cron: '0 5 * * *'
   workflow_dispatch:
+    inputs:
+      test_suite:
+        description: 'Select which Playwright spec to run'
+        type: choice
+        required: true
+        default: leancode
+        options:
+          - leancode
+          - patrol
 
 jobs:
   test:
@@ -22,7 +31,12 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install firefox --with-deps
 
-      - name: Run Playwright tests (LeanCode + Patrol)
+      - name: Run selected Playwright test (workflow dispatch)
+        if: github.event_name == 'workflow_dispatch'
+        run: npx playwright test tests/${{ github.event.inputs.test_suite }}.spec.ts
+
+      - name: Run Playwright tests (scheduled)
+        if: github.event_name != 'workflow_dispatch'
         run: npx playwright test tests/leancode.spec.ts tests/patrol.spec.ts
 
       - name: Upload test report
